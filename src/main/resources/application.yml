@@ -1,0 +1,69 @@
+# Spring Boot 애플리케이션의 설정 파일
+# 서버 설정
+server:
+    # 애플리케이션의 포트 설정
+    port: 9999
+    
+    # 서블릿 설정
+    servlet:
+        # 애플리케이션의 컨텍스트 경로 설정
+        context-path: /
+        
+        # 인코딩 설정
+        encoding:
+            # 문자셋 설정
+            charset: UTF-8
+            # 강제로 지정된 문자셋을 사용할지 여부
+            force: true
+
+# Spring 애플리케이션 설정
+spring:
+    # 데이터 소스 설정
+    datasource:
+        # 사용할 JDBC 드라이버 클래스 이름
+        driver-class-name: org.mariadb.jdbc.Driver
+        # 데이터베이스 연결 URL
+        url: jdbc:mariadb://localhost:3306/study
+        # 데이터베이스 사용자명
+        username: root
+        # 데이터베이스 비밀번호
+        password: 1234
+    
+    # JPA(Java Persistence API) 설정
+    jpa:
+        # OpenEntityManagerInView 패턴 활성화 여부
+        open-in-view: true
+        
+        # Hibernate 설정
+        hibernate:
+            # 데이터베이스 스키마 생성 전략 설정 (create, update, validate, none 등)
+            ddl-auto: create
+            
+            # 새로운 ID 생성기 매핑 사용 여부
+            # new_generator_mappings: false
+            # 더이상 지원하지 않음
+            # use-new-id-generator-mappings: false
+        
+        # Hibernate 속성 설정
+        properties:
+            hibernate:
+                # SQL 쿼리 보여주기 여부
+                show_sql: false
+                # SQL 쿼리 형식화 여부
+                format_sql: true
+                # SQL 쿼리 강조 여부
+                highlight_sql: true
+                # 새로운 ID 생성기 매핑 사용 여부
+                use-new-id-generator-mappings: false
+# 로깅 설정
+logging:
+  # 로그 레벨 설정 (TRACE, DEBUG, INFO, WARN, ERROR)
+  level:
+    org:
+        hibernate:
+            type.descriptor.sql: trace
+            SQL: debug
+  # 로그 출력 형식 지정
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
